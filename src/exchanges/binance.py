@@ -172,24 +172,24 @@ class Binance(Corretora):
         _percent_max_in_operation = float(settings.get('tradeParameters').get('percent_max_in_operation'))
         stopLoss = price * 1 + float(settings.get('tradeParameters').get('stop_loss'))
         takeProfit = price * (1 + int(settings.get('tradeParameters').get('leverage')) *  int(settings.get('tradeParameters').get('profit')))
-        _usdt_balance = float([x for x in  self._get_client.futures_account_balance() if x.get('asset')=='USDT'][0].get('balance'))
+        _usdt_balance = float([x for x in  self._get_client().futures_account_balance() if x.get('asset')=='USDT'][0].get('balance'))
         quantity = self._format_amount(_usdt_balance / (price*_percent_max_in_operation))
         
-        order_limit = self._get_client.futures_create_order(
+        order_limit = self._get_client().futures_create_order(
             symbol=_coin_pair, 
             side=Client.SIDE_BUY,
             type=Client.FUTURE_ORDER_TYPE_LIMIT, 
             quantity=quantity, price = price,
             isolated=True, positionSide=positionSide
         )
-        order_sl = client.futures_create_order(
+        order_sl = Client.futures_create_order(
             symbol=_coin_pair, 
             side=Client.SIDE_SELL,  closePosition=True,
             type=Client.FUTURE_ORDER_TYPE_STOP_MARKET, 
             quantity=quantity, stopPrice=stopLoss, 
             positionSide=positionSide, 
             timeInForce=Client.TIME_IN_FORCE_GTC)
-        order_tp = client.futures_create_order(
+        order_tp = self._get_client().futures_create_order(
             symbol=_coin_pair, 
             side=Client.SIDE_SELL,  closePosition=True,
             type=Client.FUTURE_ORDER_TYPE_TAKE_PROFIT_MARKET,

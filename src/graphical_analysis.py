@@ -49,7 +49,9 @@ class analyzer:
             return f"- Possui o oscilador RSI Sobrevendido ({round(tupla.RSI,2)})\n"
         if (tupla.RSI > 70):
             return f"- Possui o oscilador RSI Sobrecomprado ({round(tupla.RSI,2)})\n"
-        return f"- Possui o oscilador RSI em uma área neutra ({round(tupla.RSI,2)})\n"
+        if (tupla.RSI > 30 and tupla.RSI < 70):
+            return f"- Possui o oscilador RSI em uma área neutra ({round(tupla.RSI,2)})\n"
+        return ""
 
     def _test_support(self, tupla, suportes):
         """

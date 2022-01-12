@@ -11,3 +11,4 @@ src/exchanges/__pycache__/*
 src/exchanges/.ipynb_checkpoints/*
 utils/__pycache__/*
 utils/.ipynb_checkpoints/*
+database/.ipynb_checkpoints/*
