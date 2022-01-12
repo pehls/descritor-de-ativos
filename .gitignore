@@ -1,0 +1,13 @@
+.ipynb_checkpoints/*
+.vs/*
+*.csv
+*.pbix
+*.pdf
+database/secrets.json
+logs/*.log
+src/__pycache__/*
+src/.ipynb_checkpoints/*
+src/exchanges/__pycache__/*
+src/exchanges/.ipynb_checkpoints/*
+utils/__pycache__/*
+utils/.ipynb_checkpoints/*
